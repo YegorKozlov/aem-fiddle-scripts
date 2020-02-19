@@ -29,11 +29,11 @@ Configuration: {user.default=, user.mapping=[com.adobe.cq.smartcontent-core:nlp-
 ```
 
 To delete duplicate configurations set the dryRun flag to false:
-```
-    // de-dupe a particular factoryPid. Deafault is to de-dupe all factory configurations 
-    String pid = "*" ; // com.day.cq.polling.importer.impl.ManagedPollConfigImpl
+```Java
+    // de-dupe a particular factoryPid. Deafault is "*" which de-dupes all factory configurations 
+    String pid = "com.day.cq.polling.importer.impl.ManagedPollConfigImpl"
     // Dry-run    
-    boolean dryRun = true; // setting it to false will update the OSGi configurations
+    boolean dryRun = false; // setting it to false will update the OSGi configurations
 ```
 You can optionally narrow down the scope of the update to a particular factoryPid. 
 
