@@ -4,7 +4,7 @@
 A script to find and de-duplicate OSGi Factory configurations.
 
 This is to address some scenarios with AEM and Apache Sling installations where factory configs get duplicated. See [SLING-6313](https://jira.apache.org/jira/browse/SLING-6313) for the explanation of the problem.
-There is a [felix-osgi-config-repair](https://github.com/cqsupport/felix-osgi-utils/tree/master/felix-osgi-config-repair) tool by Andrew Khoury to address this problem, but this tool is a runnable jar which you need to upload and execute on a running Sling instance. In many cases it is difficult to do, for example, when AEM is running in a immutable container in AWS EC2. This script is a online version of [felix-osgi-config-repair](https://github.com/cqsupport/felix-osgi-utils/tree/master/felix-osgi-config-repair) whicj can run from AEM Fiddle.
+There is a [felix-osgi-config-repair](https://github.com/cqsupport/felix-osgi-utils/tree/master/felix-osgi-config-repair) tool by Andrew Khoury to address this problem, but this tool is a runnable jar which you need to upload and execute on a running Sling instance. In many cases it is difficult to do, for example, when AEM is running in a immutable container in AWS EC2. This script is a online version of [felix-osgi-config-repair](https://github.com/cqsupport/felix-osgi-utils/tree/master/felix-osgi-config-repair) which can run from AEM Fiddle.
 
 
 ### Usage
@@ -29,11 +29,11 @@ Configuration: {user.default=, user.mapping=[com.adobe.cq.smartcontent-core:nlp-
 ```
 
 To delete duplicate configurations set the dryRun flag to false:
-```
-    // de-dupe a particular factoryPid. Deafault is to de-dupe all factory configurations 
-    String pid = "*" ; // com.day.cq.polling.importer.impl.ManagedPollConfigImpl
+```Java
+    // de-dupe a particular factoryPid. Deafault is "*" which de-dupes all factory configurations 
+    String pid = "com.day.cq.polling.importer.impl.ManagedPollConfigImpl"
     // Dry-run    
-    boolean dryRun = true; // setting it to false will update the OSGi configurations
+    boolean dryRun = false; // setting it to false will update the OSGi configurations
 ```
 You can optionally narrow down the scope of the update to a particular factoryPid. 
 
