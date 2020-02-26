@@ -43,3 +43,6 @@ out.close();
 - Navigate to http://\<server\>:\<port\>/system/console/bundles
 - Locate Adobe Granite Crypto Support bundle (com.adobe.granite.crypto)
 - Click Refresh
+
+### 7. Delete the _hmac_ and _master_ keys from DAM. You no longer need them.
+

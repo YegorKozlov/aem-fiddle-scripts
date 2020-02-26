@@ -1,3 +1,6 @@
+/**
+*  Programmatically Update Crypto Keys in AEM
+*/
 <%@include file="/libs/foundation/global.jsp"%><%
 %><%@page session="false" contentType="text/html; charset=utf-8" 
 	pageEncoding="UTF-8"
@@ -12,6 +15,7 @@
 
     String hmacPath = "/content/dam/crypto/hmac";
     String masterPath = "/content/dam/crypto/master";
+
     BundleContext bc = FrameworkUtil.getBundle(Resource.class).getBundleContext();
 
     String symbolicName = "com.adobe.granite.crypto.file";    
