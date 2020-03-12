@@ -14,11 +14,11 @@ The approach recommended by Adobe is to replicate the crypto keys as a part of A
 What if you don't have ssh access to the AEM instances ? This  [script](encyptionKeys.jsp)  demonstrates an approach how to update the Crypto keys programmatically. 
 
 ### 1. Upload the key to update in AEM
-for example, in _/content/dam/crypto/hmac_
+for example, in _/etc/key/hmac_
 
 ### 2. Read the key bytes
 ```java
-byte[] key = IOUtils.toByteArray(resourceResolver.getResource("/content/dam/crypto/hmac").adaptTo(Asset.class).getOriginal().getStream());
+byte[] key = IOUtils.toByteArray(hmacResource.getValueMap().get(JcrConstants.JCR_DATA, InputStream.class));
 ```
 
 ### 3. Get the _com.adobe.granite.crypto.file_ bundle
@@ -44,5 +44,23 @@ out.close();
 - Locate Adobe Granite Crypto Support bundle (com.adobe.granite.crypto)
 - Click Refresh
 
-### 7. Delete the _hmac_ and _master_ keys from DAM. You no longer need them.
+### 7. Delete the _hmac_ and _master_ keys. You no longer need them.
+
+
+# All steps above in a shell snippet
+```
+# upload the crypto keys 
+curl -u admn:admin -Fhmac=@./hmac http://localhost:4502/etc/key
+curl -u admn:admin -Fmaster=@./master http://localhost:4502/etc/key
+
+# update the keys
+curl -u admn:admin http://localhost:4502/etc/acs-tools/aem-fiddle/_jcr_content.run.html -F scriptdata=@encyptionKeys.jsp -F scriptext=jsp 
+
+# delete the crypto keys
+curl  -u admn:admin -F":operation=delete" http://localhost:4502/etc/key/hmac
+curl  -u admn:admin  -F":operation=delete" http://localhost:4502/etc/key/hmac
+
+# refresh com.adobe.granite.crypto bundle
+curl -u  admn:admin -F action=refresh http://localhost:4502/system/console/bundles/com.adobe.granite.crypto
+```
 
