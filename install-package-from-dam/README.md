@@ -2,7 +2,7 @@
 
 There can be situations when you need to install a JCR package but you don't have access to the CRX Package Manager (http://localhost:4502/crx/packmgr/index.jsp)
 
-AEM Fiddle comes to rescue. The idea is to upload your package in DAM and then programmatically upload and install it.
+AEM Fiddle comes to rescue. The idea is to upload your package in DAM and then programmatically upload and install it using the JCR Package Manager API
 
 ```Java
 <%@include file="/libs/foundation/global.jsp"%><%
