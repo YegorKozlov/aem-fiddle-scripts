@@ -4,7 +4,7 @@ There can be situations when you need to install a JCR package but you don't hav
 
 AEM Fiddle comes to rescue. The idea is to upload your package in DAM and then programmatically upload and install it.
 
-```java
+```Java
 <%@include file="/libs/foundation/global.jsp"%><%
 %><%@page session="false" contentType="text/html; charset=utf-8" 
 	pageEncoding="UTF-8"
@@ -23,7 +23,7 @@ AEM Fiddle comes to rescue. The idea is to upload your package in DAM and then p
     
     JcrPackageManager packageManager = PackagingService.getPackageManager(resourceResolver.adaptTo(Session.class));
 
-    // call JcrPackageManager#upload( InputStream in, boolean replace) to upload the package to the /etc/packages
+    // call JcrPackageManager#upload( InputStream in, boolean replace) to upload the package to the /etc/packages file system
     long t0 = System.currentTimeMillis();
     JcrPackage pkg = packageManager.upload(asset.getOriginal().getStream(), true);
     out.println("package uploaded in "+(System.currentTimeMillis()-t0)+" ms: " + pkg.getNode().getPath());
